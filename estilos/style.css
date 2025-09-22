@@ -16,3 +16,12 @@ main{
     box-shadow: 3px 3px 5px rgba(148, 4, 184, 0.473);
     
 }
+img.lado{
+    float: right;
+    width: 80px;
+    height: 80px;
+    float: right;
+    margin-right: 20px;
+    border-radius: 100px;
+    box-shadow: 3px 3px 5px rgba(148, 4, 184, 0.473);
+}

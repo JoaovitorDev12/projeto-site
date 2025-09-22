@@ -3,16 +3,16 @@ font-family: Arial, Helvetica, sans-serif;
 font-size: 16px;
 }
 Bory{
-    background-color: rgb(104, 73, 26);
+    background-color: rgb(89, 22, 145);
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 main{
- background-color: rgb(161, 49, 189);   max-width: 1200px;
+ background-color: rgb(251, 242, 253);   max-width: 1200px;
  width: 500px;
     margin: auto;
     padding: 20px;
-    box-shadow: 3px 3px 5px rgba(0,0,0,0.473);
+    box-shadow: 3px 3px 5px rgba(148, 4, 184, 0.473);
     
 }

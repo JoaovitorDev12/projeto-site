@@ -1,23 +1,1158 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curso de JavaScript</title>
-    <link rel="stylesheet" href="estilos/style.css">
+    <title>CGPL - Soluções</title>
+    <style>
+        /* (O CSS permanece exatamente igual) */
+        :root {
+            --primary: #3498db;
+            --secondary: #2ecc71;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --danger: #e74c3c;
+            --warning: #f39c12;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: var(--dark);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #27ae60;
+        }
+        
+        .btn-danger {
+            background-color: var(--danger);
+        }
+        
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .services {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--dark);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: var(--light);
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .service-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .auth-forms {
+            padding: 80px 0;
+            background-color: #f5f7fa;
+        }
+        
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .form-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--dark);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 38px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #777;
+        }
+        
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .form-footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .dashboard {
+            padding: 40px 0;
+        }
+        
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .dashboard-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab.active {
+            border-bottom-color: var(--primary);
+            color: var(--primary);
+            font-weight: 500;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .table th, .table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+        
+        .table tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .status {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-confirmed {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        .status-completed {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .status-cancelled {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            margin: 20px 0;
+        }
+        
+        .footer-links a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .dashboard-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .dashboard-header .btn {
+                margin-top: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <main>
-        <header>
-            <h1>Curso de JavaScript</h1>
-        </header>
-        <article>
-            <p><abbr title="JavaScript">JavaScript</abbr> é uma linguagem de script criada para aumentar a interatividade entre um site e seus visitantes. Os códigos em JS são executados dentro do navegador e dão acesso aos elementos HTML por meio do <abbr title="Document Object Model">DOM</abbr>.</p>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">CGPL - <span>Soluções</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#services">Serviços</a></li>
+                    <li><a href="#about">Sobre</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                    <li><a href="#" id="loginLink">Login</a></li>
+                    <li><a href="#" id="registerLink">Cadastrar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/BXqUH86F-kA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <!-- Seção Principal -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>CGPL - Soluções com Agendamento Online</h1>
+            <p>Agende serviços de manutenção, reparos e instalações de forma rápida e prática. Nossa equipe está pronta para ajudar com qualquer tarefa doméstica.</p>
+            <a href="#" class="btn btn-secondary" id="scheduleServiceBtn">Agendar Serviço</a>
+        </div>
+    </section>
 
-            <a href="index.html"><img src="imagens/btn-back.png" alt="Voltar"></a>
-        </article>
-    </main>
+    <!-- Serviços -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">Nossos Serviços</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💡</div>
+                    <h3>Troca de Lâmpadas</h3>
+                    <p>Substituição de lâmpadas queimadas em qualquer ambiente.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>Reparos Elétricos</h3>
+                    <p>Conserto de tomadas, interruptores e pequenos problemas elétricos.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚰</div>
+                    <h3>Encanamento</h3>
+                    <p>Desentupimento e reparos em pias, vasos sanitários e tubulações.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔨</div>
+                    <h3>Pequenos Reparos</h3>
+                    <p>Consertos em móveis, portas, janelas e outros itens domésticos.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h3>Pintura</h3>
+                    <p>Pintura de paredes, portas e pequenos espaços.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔩</div>
+                    <h3>Montagem</h3>
+                    <p>Montagem de móveis, prateleiras e outros itens.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulários de Autenticação -->
+    <section class="auth-forms">
+        <div class="container">
+            <!-- Formulário de Login -->
+            <div class="form-container" id="loginForm">
+                <h2 class="form-title">Login</h2>
+                <form id="loginFormElement">
+                    <div class="form-group">
+                        <label for="loginEmail">E-mail</label>
+                        <input type="email" id="loginEmail" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Senha</label>
+                        <input type="password" id="loginPassword" class="form-control" required>
+                        <button type="button" class="password-toggle" id="toggleLoginPassword">
+                            👁️
+                        </button>
+                    </div>
+                    <button type="submit" class="btn btn-secondary" style="width: 100%;">Entrar</button>
+                </form>
+                <div class="form-footer">
+                    <p>Não tem uma conta? <a href="#" id="showRegisterForm">Cadastre-se</a></p>
+                </div>
+            </div>
+
+            <!-- Formulário de Cadastro -->
+            <div class="form-container hidden" id="registerForm">
+                <h2 class="form-title">Cadastro</h2>
+                <form id="registerFormElement">
+                    <div class="form-group">
+                        <label for="registerName">Nome Completo</label>
+                        <input type="text" id="registerName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">E-mail</label>
+                        <input type="email" id="registerEmail" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPhone">Telefone</label>
+                        <input type="tel" id="registerPhone" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Senha</label>
+                        <input type="password" id="registerPassword" class="form-control" required>
+                        <button type="button" class="password-toggle" id="toggleRegisterPassword">
+                            👁️
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerConfirmPassword">Confirmar Senha</label>
+                        <input type="password" id="registerConfirmPassword" class="form-control" required>
+                        <button type="button" class="password-toggle" id="toggleRegisterConfirmPassword">
+                            👁️
+                        </button>
+                    </div>
+                    <button type="submit" class="btn btn-secondary" style="width: 100%;">Cadastrar</button>
+                </form>
+                <div class="form-footer">
+                    <p>Já tem uma conta? <a href="#" id="showLoginForm">Faça login</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulário de Agendamento de Serviço -->
+    <section class="auth-forms hidden" id="serviceRequestForm">
+        <div class="container">
+            <div class="form-container">
+                <h2 class="form-title">Solicitar Serviço</h2>
+                <form id="serviceRequestFormElement">
+                    <div class="form-group">
+                        <label for="serviceDescription">Descreva o serviço necessário</label>
+                        <textarea id="serviceDescription" class="form-control" rows="5" placeholder="Descreva detalhadamente o serviço que você precisa..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="serviceAddress">Endereço para realização do serviço</label>
+                        <input type="text" id="serviceAddress" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="preferredDate">Data preferencial</label>
+                        <input type="date" id="preferredDate" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="additionalInfo">Informações adicionais</label>
+                        <textarea id="additionalInfo" class="form-control" rows="3" placeholder="Horário preferido, observações, etc."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-secondary" style="width: 100%;">Solicitar Serviço</button>
+                </form>
+                <div class="form-footer">
+                    <p><a href="#" id="backToDashboard">Voltar ao painel</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Painel do Administrador -->
+    <section class="dashboard hidden" id="adminDashboard">
+        <div class="container">
+            <div class="dashboard-header">
+                <h2>Painel de Administração - CGPL Soluções</h2>
+                <button class="btn btn-danger" id="logoutBtn">Sair</button>
+            </div>
+            
+            <div class="dashboard-tabs">
+                <div class="tab active" data-tab="services">Serviços Solicitados</div>
+                <div class="tab" data-tab="schedule">Agendar Horários</div>
+                <div class="tab" data-tab="users">Usuários</div>
+            </div>
+            
+            <div class="tab-content active" id="services-tab">
+                <h3>Serviços Solicitados</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Cliente</th>
+                            <th>Serviço</th>
+                            <th>Endereço</th>
+                            <th>Data Solicitação</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="servicesTableBody">
+                        <!-- Dados serão preenchidos via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="tab-content" id="schedule-tab">
+                <h3>Agendar Horários</h3>
+                <div class="form-container">
+                    <form id="scheduleForm">
+                        <div class="form-group">
+                            <label for="scheduleService">Serviço</label>
+                            <select id="scheduleService" class="form-control" required>
+                                <option value="">Selecione um serviço</option>
+                                <!-- Serviços serão preenchidos via JavaScript -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="scheduleClient">Cliente</label>
+                            <select id="scheduleClient" class="form-control" required>
+                                <option value="">Selecione um cliente</option>
+                                <!-- Clientes serão preenchidos via JavaScript -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="scheduleDate">Data</label>
+                            <input type="date" id="scheduleDate" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="scheduleTime">Horário</label>
+                            <input type="time" id="scheduleTime" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-secondary">Agendar Serviço</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="users-tab">
+                <h3>Usuários Cadastrados</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                            <th>Telefone</th>
+                            <th>Data Cadastro</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <!-- Dados serão preenchidos via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer id="contact">
+        <div class="container footer-content">
+            <div class="logo">CGPL - <span>Soluções</span></div>
+            <div class="footer-links">
+                <a href="#home">Início</a>
+                <a href="#services">Serviços</a>
+                <a href="#about">Sobre</a>
+                <a href="#contact">Contato</a>
+            </div>
+            <p>&copy; 2023 CGPL - Soluções. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Inicializar dados de forma mais robusta
+        function initializeData() {
+            // Verificar se já existem dados no localStorage
+            let users = JSON.parse(localStorage.getItem('users'));
+            let serviceRequests = JSON.parse(localStorage.getItem('serviceRequests'));
+            
+            console.log('Dados carregados do localStorage:', { users, serviceRequests });
+            
+            // Se não existirem usuários, criar o admin
+            if (!users || users.length === 0) {
+                users = [
+                    {
+                        id: 1,
+                        name: 'Administrador CGPL',
+                        email: 'admin@cgpl.com',
+                        phone: '(11) 99999-9999',
+                        password: 'admin123',
+                        registrationDate: new Date().toLocaleDateString('pt-BR')
+                    }
+                ];
+                localStorage.setItem('users', JSON.stringify(users));
+                console.log('Usuário admin criado:', users[0]);
+            }
+            
+            // Se não existirem solicitações de serviço, criar algumas de exemplo
+            if (!serviceRequests || serviceRequests.length === 0) {
+                serviceRequests = [
+                    {
+                        id: 1,
+                        clientId: 2,
+                        clientName: 'João Silva',
+                        serviceDescription: 'Troca de lâmpadas na sala e quarto',
+                        serviceAddress: 'Rua das Flores, 123 - Centro',
+                        preferredDate: '20/10/2023',
+                        additionalInfo: 'Preferência por horário da tarde',
+                        requestDate: new Date().toLocaleDateString('pt-BR'),
+                        status: 'Pendente'
+                    },
+                    {
+                        id: 2,
+                        clientId: 3,
+                        clientName: 'Maria Santos',
+                        serviceDescription: 'Reparo na tomada da cozinha que está solta',
+                        serviceAddress: 'Av. Principal, 456 - Jardim',
+                        preferredDate: '22/10/2023',
+                        additionalInfo: '',
+                        requestDate: new Date().toLocaleDateString('pt-BR'),
+                        status: 'Agendado',
+                        scheduledDate: '22/10/2023',
+                        scheduledTime: '10:30'
+                    }
+                ];
+                localStorage.setItem('serviceRequests', JSON.stringify(serviceRequests));
+            }
+            
+            return { users, serviceRequests };
+        }
+
+        // Carregar dados
+        const data = initializeData();
+        let users = data.users;
+        let serviceRequests = data.serviceRequests;
+        let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+        
+        console.log('Dados iniciais carregados:', { users, serviceRequests, currentUser });
+
+        // Elementos DOM
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const serviceRequestForm = document.getElementById('serviceRequestForm');
+        const loginFormElement = document.getElementById('loginFormElement');
+        const registerFormElement = document.getElementById('registerFormElement');
+        const serviceRequestFormElement = document.getElementById('serviceRequestFormElement');
+        const adminDashboard = document.getElementById('adminDashboard');
+        const loginLink = document.getElementById('loginLink');
+        const registerLink = document.getElementById('registerLink');
+        const showRegisterForm = document.getElementById('showRegisterForm');
+        const showLoginForm = document.getElementById('showLoginForm');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const scheduleServiceBtn = document.getElementById('scheduleServiceBtn');
+        const backToDashboard = document.getElementById('backToDashboard');
+        const servicesTableBody = document.getElementById('servicesTableBody');
+        const usersTableBody = document.getElementById('usersTableBody');
+        const scheduleClient = document.getElementById('scheduleClient');
+        const scheduleService = document.getElementById('scheduleService');
+        const scheduleForm = document.getElementById('scheduleForm');
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        // Botões de mostrar/ocultar senha
+        const toggleLoginPassword = document.getElementById('toggleLoginPassword');
+        const toggleRegisterPassword = document.getElementById('toggleRegisterPassword');
+        const toggleRegisterConfirmPassword = document.getElementById('toggleRegisterConfirmPassword');
+        
+        // Verificar se há usuário logado
+        if (currentUser) {
+            console.log('Usuário já logado:', currentUser);
+            if (currentUser.email === 'admin@cgpl.com') {
+                showAdminDashboard();
+            } else {
+                showServiceRequestForm();
+            }
+        }
+        
+        // Event Listeners
+        loginLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            showLoginForm.click();
+        });
+        
+        registerLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            showRegisterForm.click();
+        });
+        
+        showRegisterForm.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginForm.classList.add('hidden');
+            registerForm.classList.remove('hidden');
+            serviceRequestForm.classList.add('hidden');
+        });
+        
+        showLoginForm.addEventListener('click', function(e) {
+            e.preventDefault();
+            registerForm.classList.add('hidden');
+            loginForm.classList.remove('hidden');
+            serviceRequestForm.classList.add('hidden');
+        });
+        
+        scheduleServiceBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (!currentUser) {
+                alert('Por favor, faça login para solicitar um serviço.');
+                showLoginForm.click();
+                return;
+            }
+            
+            if (currentUser.email === 'admin@cgpl.com') {
+                showAdminDashboard();
+            } else {
+                showServiceRequestForm();
+            }
+        });
+        
+        backToDashboard.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (currentUser && currentUser.email === 'admin@cgpl.com') {
+                showAdminDashboard();
+            } else {
+                showServiceRequestForm();
+            }
+        });
+        
+        // Funcionalidade de mostrar/ocultar senha
+        toggleLoginPassword.addEventListener('click', function() {
+            const passwordField = document.getElementById('loginPassword');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleLoginPassword.textContent = '🙈';
+            } else {
+                passwordField.type = 'password';
+                toggleLoginPassword.textContent = '👁️';
+            }
+        });
+        
+        toggleRegisterPassword.addEventListener('click', function() {
+            const passwordField = document.getElementById('registerPassword');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleRegisterPassword.textContent = '🙈';
+            } else {
+                passwordField.type = 'password';
+                toggleRegisterPassword.textContent = '👁️';
+            }
+        });
+        
+        toggleRegisterConfirmPassword.addEventListener('click', function() {
+            const passwordField = document.getElementById('registerConfirmPassword');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleRegisterConfirmPassword.textContent = '🙈';
+            } else {
+                passwordField.type = 'password';
+                toggleRegisterConfirmPassword.textContent = '👁️';
+            }
+        });
+        
+        loginFormElement.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            console.log('Tentativa de login:', { email, password });
+            console.log('Usuários disponíveis:', users);
+            
+            // Atualizar dados do localStorage antes de verificar
+            const updatedUsers = JSON.parse(localStorage.getItem('users')) || users;
+            console.log('Usuários atualizados:', updatedUsers);
+            
+            // Verificar credenciais
+            const user = updatedUsers.find(u => u.email === email && u.password === password);
+            
+            if (user) {
+                console.log('Login bem-sucedido:', user);
+                currentUser = user;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                
+                if (email === 'admin@cgpl.com') {
+                    showAdminDashboard();
+                } else {
+                    showServiceRequestForm();
+                }
+                
+                alert('Login realizado com sucesso!');
+            } else {
+                console.log('Falha no login - usuário não encontrado ou senha incorreta');
+                alert('E-mail ou senha incorretos! Verifique as credenciais.');
+            }
+        });
+        
+        registerFormElement.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const phone = document.getElementById('registerPhone').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+            
+            // Verificar se as senhas coincidem
+            if (password !== confirmPassword) {
+                alert('As senhas não coincidem!');
+                return;
+            }
+            
+            // Atualizar dados do localStorage antes de verificar
+            const updatedUsers = JSON.parse(localStorage.getItem('users')) || users;
+            
+            // Verificar se o e-mail já está cadastrado
+            if (updatedUsers.find(u => u.email === email)) {
+                alert('Este e-mail já está cadastrado!');
+                return;
+            }
+            
+            // Criar novo usuário
+            const newUser = {
+                id: Date.now(),
+                name,
+                email,
+                phone,
+                password,
+                registrationDate: new Date().toLocaleDateString('pt-BR')
+            };
+            
+            updatedUsers.push(newUser);
+            localStorage.setItem('users', JSON.stringify(updatedUsers));
+            users = updatedUsers;
+            
+            alert('Cadastro realizado com sucesso! Faça login para continuar.');
+            showLoginForm.click();
+            registerFormElement.reset();
+        });
+        
+        serviceRequestFormElement.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const serviceDescription = document.getElementById('serviceDescription').value;
+            const serviceAddress = document.getElementById('serviceAddress').value;
+            const preferredDate = document.getElementById('preferredDate').value;
+            const additionalInfo = document.getElementById('additionalInfo').value;
+            
+            // Atualizar dados do localStorage
+            const updatedServiceRequests = JSON.parse(localStorage.getItem('serviceRequests')) || serviceRequests;
+            
+            // Criar nova solicitação de serviço
+            const newServiceRequest = {
+                id: Date.now(),
+                clientId: currentUser.id,
+                clientName: currentUser.name,
+                serviceDescription,
+                serviceAddress,
+                preferredDate: preferredDate ? formatDate(preferredDate) : 'Não especificada',
+                additionalInfo,
+                requestDate: new Date().toLocaleDateString('pt-BR'),
+                status: 'Pendente'
+            };
+            
+            updatedServiceRequests.push(newServiceRequest);
+            localStorage.setItem('serviceRequests', JSON.stringify(updatedServiceRequests));
+            serviceRequests = updatedServiceRequests;
+            
+            alert('Solicitação de serviço enviada com sucesso! Entraremos em contato em breve.');
+            serviceRequestFormElement.reset();
+        });
+        
+        logoutBtn.addEventListener('click', function() {
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            adminDashboard.classList.add('hidden');
+            serviceRequestForm.classList.add('hidden');
+            loginForm.classList.remove('hidden');
+            registerForm.classList.add('hidden');
+        });
+        
+        // Tabs do dashboard
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                
+                // Ativar tab clicada
+                tabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Mostrar conteúdo correspondente
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === `${tabId}-tab`) {
+                        content.classList.add('active');
+                    }
+                });
+                
+                // Atualizar dados se necessário
+                if (tabId === 'services') {
+                    loadServicesTable();
+                } else if (tabId === 'users') {
+                    loadUsersTable();
+                } else if (tabId === 'schedule') {
+                    loadClientsForScheduling();
+                    loadServiceRequestsForScheduling();
+                }
+            });
+        });
+        
+        // Formulário de agendamento
+        scheduleForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const serviceId = document.getElementById('scheduleService').value;
+            const clientId = document.getElementById('scheduleClient').value;
+            const date = document.getElementById('scheduleDate').value;
+            const time = document.getElementById('scheduleTime').value;
+            
+            // Atualizar dados do localStorage
+            const updatedServiceRequests = JSON.parse(localStorage.getItem('serviceRequests')) || serviceRequests;
+            const updatedUsers = JSON.parse(localStorage.getItem('users')) || users;
+            
+            const client = updatedUsers.find(u => u.id == clientId);
+            const serviceRequest = updatedServiceRequests.find(s => s.id == serviceId);
+            
+            if (!client) {
+                alert('Selecione um cliente válido!');
+                return;
+            }
+            
+            if (!serviceRequest) {
+                alert('Selecione um serviço válido!');
+                return;
+            }
+            
+            // Atualizar status do serviço
+            serviceRequest.status = 'Agendado';
+            serviceRequest.scheduledDate = formatDate(date);
+            serviceRequest.scheduledTime = time;
+            
+            localStorage.setItem('serviceRequests', JSON.stringify(updatedServiceRequests));
+            serviceRequests = updatedServiceRequests;
+            
+            alert(`Serviço agendado para ${client.name} em ${formatDate(date)} às ${time}`);
+            scheduleForm.reset();
+            loadServicesTable();
+        });
+        
+        // Funções auxiliares
+        function showAdminDashboard() {
+            loginForm.classList.add('hidden');
+            registerForm.classList.add('hidden');
+            serviceRequestForm.classList.add('hidden');
+            adminDashboard.classList.remove('hidden');
+            loadServicesTable();
+            loadUsersTable();
+            loadClientsForScheduling();
+            loadServiceRequestsForScheduling();
+        }
+        
+        function showServiceRequestForm() {
+            loginForm.classList.add('hidden');
+            registerForm.classList.add('hidden');
+            adminDashboard.classList.add('hidden');
+            serviceRequestForm.classList.remove('hidden');
+        }
+        
+        function loadServicesTable() {
+            servicesTableBody.innerHTML = '';
+            
+            const updatedServiceRequests = JSON.parse(localStorage.getItem('serviceRequests')) || serviceRequests;
+            
+            if (updatedServiceRequests.length === 0) {
+                servicesTableBody.innerHTML = '<tr><td colspan="7" style="text-align: center;">Nenhum serviço solicitado</td></tr>';
+                return;
+            }
+            
+            updatedServiceRequests.forEach(service => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${service.id}</td>
+                    <td>${service.clientName}</td>
+                    <td>${service.serviceDescription}</td>
+                    <td>${service.serviceAddress}</td>
+                    <td>${service.requestDate}</td>
+                    <td><span class="status status-${getStatusClass(service.status)}">${service.status}</span></td>
+                    <td>
+                        <button class="btn" onclick="editService(${service.id})">Editar</button>
+                        <button class="btn btn-danger" onclick="deleteService(${service.id})">Excluir</button>
+                    </td>
+                `;
+                servicesTableBody.appendChild(row);
+            });
+        }
+        
+        function loadUsersTable() {
+            usersTableBody.innerHTML = '';
+            
+            const updatedUsers = JSON.parse(localStorage.getItem('users')) || users;
+            
+            if (updatedUsers.length === 0) {
+                usersTableBody.innerHTML = '<tr><td colspan="5" style="text-align: center;">Nenhum usuário cadastrado</td></tr>';
+                return;
+            }
+            
+            updatedUsers.forEach(user => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${user.id}</td>
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                    <td>${user.phone}</td>
+                    <td>${user.registrationDate}</td>
+                `;
+                usersTableBody.appendChild(row);
+            });
+        }
+        
+        function loadClientsForScheduling() {
+            scheduleClient.innerHTML = '<option value="">Selecione um cliente</option>';
+            
+            const updatedUsers = JSON.parse(localStorage.getItem('users')) || users;
+            
+            updatedUsers.forEach(user => {
+                const option = document.createElement('option');
+                option.value = user.id;
+                option.textContent = user.name;
+                scheduleClient.appendChild(option);
+            });
+        }
+        
+        function loadServiceRequestsForScheduling() {
+            scheduleService.innerHTML = '<option value="">Selecione um serviço</option>';
+            
+            const updatedServiceRequests = JSON.parse(localStorage.getItem('serviceRequests')) || serviceRequests;
+            
+            updatedServiceRequests
+                .filter(service => service.status === 'Pendente')
+                .forEach(service => {
+                    const option = document.createElement('option');
+                    option.value = service.id;
+                    option.textContent = `${service.clientName} - ${service.serviceDescription.substring(0, 50)}...`;
+                    scheduleService.appendChild(option);
+                });
+        }
+        
+        function getStatusClass(status) {
+            const statusMap = {
+                'Pendente': 'pending',
+                'Agendado': 'confirmed',
+                'Concluído': 'completed',
+                'Cancelado': 'cancelled'
+            };
+            
+            return statusMap[status] || 'pending';
+        }
+        
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('pt-BR');
+        }
+        
+        // Funções globais para os botões de ação
+        window.editService = function(id) {
+            const updatedServiceRequests = JSON.parse(localStorage.getItem('serviceRequests')) || serviceRequests;
+            const service = updatedServiceRequests.find(s => s.id === id);
+            if (service) {
+                const newStatus = prompt(`Alterar status do serviço "${service.serviceDescription.substring(0, 30)}..." para:`, service.status);
+                if (newStatus && ['Pendente', 'Agendado', 'Concluído', 'Cancelado'].includes(newStatus)) {
+                    service.status = newStatus;
+                    localStorage.setItem('serviceRequests', JSON.stringify(updatedServiceRequests));
+                    serviceRequests = updatedServiceRequests;
+                    loadServicesTable();
+                    alert('Status atualizado com sucesso!');
+                }
+            }
+        };
+        
+        window.deleteService = function(id) {
+            if (confirm('Tem certeza que deseja excluir esta solicitação de serviço?')) {
+                const updatedServiceRequests = JSON.parse(localStorage.getItem('serviceRequests')) || serviceRequests;
+                const filteredServices = updatedServiceRequests.filter(s => s.id !== id);
+                localStorage.setItem('serviceRequests', JSON.stringify(filteredServices));
+                serviceRequests = filteredServices;
+                loadServicesTable();
+            }
+        };
+
+        // Debug: Adicionar um botão para limpar localStorage se necessário
+        console.log('Para limpar todos os dados e recomeçar, digite no console: localStorage.clear()');
+        console.log('Credenciais do admin: admin@cgpl.com / admin123');
+    </script>
 </body>
 </html>
